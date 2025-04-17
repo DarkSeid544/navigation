@@ -48,39 +48,6 @@ const Card = ({item, props, who}) => {
 
     }
 
-    const countUp = (it, who) => {
-
-        let data = JSON.parse(localStorage.getItem(`${who}`)) || []
-
-        let item = data.find(e => e.id == it.id)
-
-        let newCount = Number(item.count) + 1
-
-        data[data.indexOf(item)].count = newCount
-
-        localStorage.setItem(`${who}`, JSON.stringify(data))
-
-        location.reload()
-
-    }
-
-    const countDown = (it, who) => {
-
-        let data = JSON.parse(localStorage.getItem(`${who}`)) || []
-
-        let item = data.find(e => e.id == it.id)
-
-        if (Number(item.count > 1)) {
-            let newCount = Number(item.count) - 1
-            data[data.indexOf(item)].count = newCount
-            localStorage.setItem(`${who}`, JSON.stringify(data))
-            location.reload()
-        }
-        
-        else(deleteItem(it, who))
-
-    }
-
   return (
     <div className={style.main}>
 
@@ -105,11 +72,11 @@ const Card = ({item, props, who}) => {
         </div>
         : ""}
 
-        {props == "del" ? <button style={{width:'130px', height:'40px', backgroundColor:'brown', color:'white', border:'none', borderRadius:'20px'}} className={style.del} onClick={() => {deleteItem(item, who)}}>Delete</button> : ""}
+        {props == "del" ? <button style={{width:'130px', height:'40px', backgroundColor:'brown', color:'white', border:'none', borderRadius:'20px', cursor:'pointer'}} className={style.del} onClick={() => {deleteItem(item, who)}}>Delete</button> : ""}
 
         {
             props == "basket" ? <div>
-                <button  className={style.del} onClick={() => {deleteItem(item, who)}}>Delete</button>
+                <button style={{width:'130px', height:'40px', backgroundColor:'brown', color:'white', border:'none', borderRadius:'20px', cursor:'pointer'}} className={style.del} onClick={() => {deleteItem(item, who)}}>Delete</button>
             </div> : ""
         }
 
